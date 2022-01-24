@@ -1,0 +1,9 @@
+.crypto-name-img-div{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.crypto-name-img-div:hover{
+    cursor: pointer;
+}

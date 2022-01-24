@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import CryptoList from './components/cryptoList/CryptoList';
 
 test('renders learn react link', () => {
-  render(<App />);
+  render(<CryptoList />);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });

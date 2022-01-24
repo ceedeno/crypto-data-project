@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
-import CanvasJSReact from "./canvasjs/canvasjs.stock.react";
+import './Chart.css'
+import CanvasJSReact from "../../canvasjs/canvasjs.stock.react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import CryptoInfo from "./cryptoInfo";
+import CryptoInfo from "./cryptoInfo/cryptoInfo";
 
 const CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
 

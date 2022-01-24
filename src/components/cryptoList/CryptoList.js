@@ -1,7 +1,7 @@
-import './App.css';
+import './CryptoList.css';
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Crypto from "./Crypto";
+import Crypto from "./crypto/Crypto";
 
 const defaultOptions = {
     method: 'GET',
@@ -19,7 +19,7 @@ const defaultOptions = {
     }
 };
 
-function App() {
+function CryptoList() {
     const [cryptos, setCryptos] = useState([])
 
     useEffect(() => {
@@ -84,4 +84,4 @@ function App() {
     );
 }
 
-export default App;
+export default CryptoList;

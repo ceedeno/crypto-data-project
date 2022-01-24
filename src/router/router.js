@@ -1,6 +1,6 @@
-import App from "./App";
+import CryptoList from "../components/cryptoList/CryptoList";
 import {Route, Routes} from "react-router-dom";
-import Chart from "./Chart";
+import Chart from "../components/chart/Chart";
 
 
 function Router(){
@@ -8,7 +8,7 @@ function Router(){
     return (
         <Routes>
             <Route path="/:cryptoId" element={<Chart />} />
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<CryptoList />} />
 
         </Routes>
 
