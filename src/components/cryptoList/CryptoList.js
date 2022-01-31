@@ -1,7 +1,11 @@
 import './CryptoList.css';
-import {useEffect, useState} from "react";
+import React, {useEffect} from 'react';
 import axios from "axios";
+import {newList} from "../../redux/actions";
+import * as ReactRedux from "react-redux";
+import store from "../../redux/store";
 import Crypto from "./crypto/Crypto";
+import {Provider} from "react-redux";
 
 const defaultOptions = {
     method: 'GET',
@@ -19,13 +23,12 @@ const defaultOptions = {
     }
 };
 
-function CryptoList() {
-    const [cryptos, setCryptos] = useState([])
+function CryptoList({cryptoList, setNewCryptoList}) {
 
     useEffect(() => {
-
-        loadAndShowData().then((response) => setCryptos(response));
-
+        console.log("here2", cryptoList)
+        loadAndShowData().then((response) => setNewCryptoList(response));
+        console.log("here3")
 
     }, [])
 
@@ -57,9 +60,8 @@ function CryptoList() {
                                         <th>Market Cap</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-
-                                    {cryptos.map((crypto) => {
+                                     <tbody>
+                                    {cryptoList.map((crypto) => {
                                         return (
                                             <Crypto key={crypto.id}
                                                     id={crypto.id}
@@ -84,4 +86,31 @@ function CryptoList() {
     );
 }
 
-export default CryptoList;
+/**************React - Redux Connection**************/
+const mapStateToProps = (state) => {
+    return {
+        cryptoList: state.cryptoList
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setNewCryptoList: (cryptoList) => {
+            dispatch(newList(cryptoList))
+        }
+    }
+}
+
+const Connected = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(CryptoList);
+
+function ConnectedCryptoList() {
+    return (
+        <Provider store={store}>
+            <Connected/>
+        </Provider>
+    );
+
+}
+
+
+export default ConnectedCryptoList;
