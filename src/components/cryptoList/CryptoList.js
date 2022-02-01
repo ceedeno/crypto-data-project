@@ -1,11 +1,18 @@
 import './CryptoList.css';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {newList} from "../../redux/actions";
 import * as ReactRedux from "react-redux";
 import store from "../../redux/store";
 import Crypto from "./crypto/Crypto";
 import {Provider} from "react-redux";
+import {Dropdown, DropdownButton} from "react-bootstrap";
+
+const SORT = {
+    MARKET_CAP: "Market Cap",
+    WINNERS: "24h Winners",
+    LOSERS: "24h Losers"
+}
 
 const defaultOptions = {
     method: 'GET',
@@ -24,6 +31,7 @@ const defaultOptions = {
 };
 
 function CryptoList({cryptoList, setNewCryptoList}) {
+    const [sortedState, setSortedState] = useState(SORT.MARKET_CAP);
 
     useEffect(() => {
         console.log("here2", cryptoList)
@@ -40,6 +48,21 @@ function CryptoList({cryptoList, setNewCryptoList}) {
             console.error("there was an error: ", e);
         }
     }
+    const sortFunction = (list) => {
+        switch (sortedState) {
+            case SORT.MARKET_CAP:
+                console.log("by Market Cap");
+                return list.sort((item1, item2)=> item1.market_cap_rank - item2.market_cap_rank);
+            case SORT.WINNERS:
+                console.log("by Winners");
+                return list.sort((item1, item2)=> item2.price_change_percentage_24h - item1.price_change_percentage_24h);
+            case SORT.LOSERS:
+                console.log("by Losers");
+                return list.sort((item1, item2)=> item1.price_change_percentage_24h - item2.price_change_percentage_24h);
+        }
+
+    }
+    const sortedList = sortFunction(cryptoList);
 
     return (
         <div className="container">
@@ -48,6 +71,11 @@ function CryptoList({cryptoList, setNewCryptoList}) {
                     <div className="card">
                         <div className="card-body">
                             <h5 className="header-title pb-3 mt-0">Cryptos</h5>
+                            <DropdownButton variant={"outline-secondary"} id="dropdown-basic-button" title={`Sorted By ${sortedState}`}>
+                                <Dropdown.Item href="#" onClick={() => setSortedState(SORT.MARKET_CAP)}>Market Cap</Dropdown.Item>
+                                <Dropdown.Item href="#" onClick={() => setSortedState(SORT.WINNERS)}>24h Winners</Dropdown.Item>
+                                <Dropdown.Item href="#" onClick={() => setSortedState(SORT.LOSERS)}>24h Losers</Dropdown.Item>
+                            </DropdownButton>
                             <div className="table-responsive">
                                 <table className="table table-hover mb-0">
                                     <thead>
@@ -61,7 +89,7 @@ function CryptoList({cryptoList, setNewCryptoList}) {
                                     </tr>
                                     </thead>
                                      <tbody>
-                                    {cryptoList.map((crypto) => {
+                                    {sortedList.map((crypto) => {
                                         return (
                                             <Crypto key={crypto.id}
                                                     id={crypto.id}
