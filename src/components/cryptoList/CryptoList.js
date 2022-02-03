@@ -85,8 +85,8 @@ function CryptoList({cryptoList, setNewCryptoList}) {
                                         <th>#Rank</th>
                                         <th>Name</th>
                                         <th>Price(USD)</th>
-                                        <th>Change (24h)</th>
-                                        <th>Price Chart</th>
+                                        <th>24h Change</th>
+                                        <th>24h Price Chart</th>
                                         <th>Market Cap</th>
                                     </tr>
                                     </thead>

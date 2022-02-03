@@ -1,5 +1,6 @@
 import './Crypto.css'
 import {Link} from "react-router-dom";
+import MiniChart from "./miniChart/MiniChart";
 
 const HIGH_FIGURES = {
     trillion: 1000000000000,
@@ -47,7 +48,11 @@ function Crypto({
             <td className={price_change_percentage_24h < 0 ? "text-danger" : "text-success"}>
                 {`${price_change_percentage_24h.toFixed(2)}%`}
             </td>
-            <td>[][][][][][]</td>
+            <td>
+                <MiniChart id={id}
+                           color={price_change_percentage_24h < 0 ? "red" : "green"}
+                />
+            </td>
             <td>{ShortMarketCapValue(market_cap)}</td>
         </tr>
 
