@@ -69,13 +69,15 @@ function CryptoList({cryptoList, setNewCryptoList}) {
             <div className="row">
                 <div className="col-xl-12">
                     <div className="card">
-                        <div className="card-body">
+                        <div className="card-header">
                             <h5 className="header-title pb-3 mt-0">Cryptos</h5>
                             <DropdownButton variant={"outline-secondary"} id="dropdown-basic-button" title={`Sorted By ${sortedState}`}>
                                 <Dropdown.Item href="#" onClick={() => setSortedState(SORT.MARKET_CAP)}>Market Cap</Dropdown.Item>
                                 <Dropdown.Item href="#" onClick={() => setSortedState(SORT.WINNERS)}>24h Winners</Dropdown.Item>
                                 <Dropdown.Item href="#" onClick={() => setSortedState(SORT.LOSERS)}>24h Losers</Dropdown.Item>
                             </DropdownButton>
+                        </div>
+                        <div className="card-body">
                             <div className="table-responsive">
                                 <table className="table table-hover mb-0">
                                     <thead>

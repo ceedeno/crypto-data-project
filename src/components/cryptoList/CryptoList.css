@@ -10,11 +10,13 @@ body{
 }
 .table th {
   font-weight: 500;
-  color: #827fc0;
+  color: #393f3f;
 }
-.table thead {
-  background-color: #f3f2f7;
+
+.table>:not(:first-child){
+  border-top: 1px !important;
 }
+
 .table>tbody>tr>td, .table>tfoot>tr>td, .table>thead>tr>td {
   padding: 14px 12px;
   vertical-align: middle;
@@ -40,4 +42,8 @@ body{
   color: #605daf;
 }
 
-
+.card-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
