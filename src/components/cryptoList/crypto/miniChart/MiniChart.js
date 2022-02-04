@@ -7,8 +7,9 @@ import axios from "axios";
 function reduceDifference(arr){
     const max = Math.max(...arr);
     const min = Math.min(...arr);
+    const increment = (max - min)*0.20;
 
-    return arr.map(value => Math.abs(max - value - (max - min)));
+    return arr.map(value => Math.abs(max - value - (max - min)) + increment);
 }
 
 function shortPointForChart(arr) {
